@@ -1,13 +1,10 @@
-var button = document.getElementById("copyID"),
-    input =  document.getElementById("box-content"),
-    html_for_copy = document.getElementById("html_for_copy").textContent;
+function copyHtml() {
+    const html_for_copy = document.getElementById("html_for_copy");
+    /* Select the text field */
+    html_for_copy.select();
 
-document.querySelector("textarea[name=box-content]").setAttribute('value',html_for_copy);
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+}
 
-button.addEventListener("click", function(event) {
-
-  event.preventDefault();
-  input.select();
-  document.execCommand("copy");
-
-});
+setTimeout(copyHtml, 3);

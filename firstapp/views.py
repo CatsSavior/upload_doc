@@ -1,19 +1,17 @@
-import datetime, os
+import datetime
+import os
 
+from PIL import Image
 from django.conf import settings
 from django.shortcuts import render
 
 from .forms import UploadDocumentForm
 
-from PIL import Image
-
 
 def generate_html_img(file, time: datetime) -> dict:
-
-    #Функция, которая сохраняет файл картинки и возвращает HTML
+    # Функция, которая сохраняет файл картинки и возвращает HTML
 
     filename = f'{time.strftime("%d-%m-%Y-%H-%M-%S")}.jpg'
-
     with open(os.path.join(settings.MEDIA_ROOT, filename), "wb+") as destination:
         for chunk in file.chunks():
             destination.write(chunk)
@@ -24,8 +22,7 @@ def generate_html_img(file, time: datetime) -> dict:
 
 
 def generate_html_video(f, time: datetime) -> dict:
-
-    #функция, которая сохраняет файл видео и возвращает HTML
+    # функция, которая сохраняет файл видео и возвращает HTML
 
     filename = f'{time.strftime("%d-%m-%Y-%H-%M-%S")}.mp4'
 
@@ -39,7 +36,6 @@ def generate_html_video(f, time: datetime) -> dict:
 
 
 def upload_doc(request):
-
     now = datetime.datetime.now()
     form = UploadDocumentForm()
 
@@ -50,7 +46,8 @@ def upload_doc(request):
             try:
                 image = Image.open(request.FILES['file'])
                 data = generate_html_img(request.FILES['file'], now)
-            except:
+            except Exception as e:
+                print(e)
                 data = generate_html_video(request.FILES['file'], now)
 
             return render(request, 'after.html', context=data)
