@@ -48,8 +48,10 @@ def upload_doc(request):
                 data = generate_html_img(request.FILES['file'], now)
             except Exception as e:
                 print(e)
-                data = generate_html_video(request.FILES['file'], now)
+                if request.FILES['file'].size < 200000000:
+                    data = generate_html_video(request.FILES['file'], now)
+                else:
+                    return render(request, "error.html", locals())
 
             return render(request, 'after.html', context=data)
-
     return render(request, 'upload_doc.html', locals())
