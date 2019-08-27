@@ -17,7 +17,7 @@ def generate_html_img(file, time: datetime) -> dict:
             destination.write(chunk)
 
     return {'text': f'''<div class='my-class'>
-        <img src="/static/{filename}">
+        <img src="/media/{filename}">
     </div>'''}
 
 
@@ -31,7 +31,7 @@ def generate_html_video(f, time: datetime) -> dict:
             destination.write(chunk)
 
     return {'text': f'''<div class='my-class'>
-            <video src="/static/{filename}">
+            <video src="/media/{filename}">
         </div>'''}
 
 
