@@ -2,15 +2,16 @@
 
 <html>
 <head>
-    <title></title>
+  <title></title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 <body>
-<input type="button" id="copyID"
-       value="Copy to Clipboard"
-       onclick="copyHtml()"/>
-
-<textarea style="display: none" type="hidden" id="html_for_copy">{{ text }}</textarea>
-
-<script type="text/javascript" src="/static/main.js"></script>
+<!--<textarea name="box-content" id="box-content"  ></textarea>
+<br/>
+<input type="button" id="copyID" value="Copy to Clipboard"/>
+<input type="hidden" id="html_for_copy" value= "{{ text }}"/>
+<script type="text/javascript" src="/static/main.js"></script>--!>
+<strong>Код для вставки:</strong>
+<p>{{ text }}</p>
 </body>
 </html>
